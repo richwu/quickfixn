@@ -1,5 +1,7 @@
 [![QuickFIX/N][1]](http://quickfixn.org)
 
+This is the modified version by RW. For UTC time handling
+
 
 For tutorials on how to use QuickFIX/n, see the `tutorial` folder at the root
 of this project or visit the [website](http://quickfixn.org/tutorial/creating-an-application).
