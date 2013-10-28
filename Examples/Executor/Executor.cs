@@ -48,6 +48,7 @@ namespace Executor
         #endregion
 
         #region MessageCracker overloads
+        /*
         public void OnMessage(QuickFix.FIX44.NewOrderSingle n, SessionID s)
         {
             Symbol symbol = n.Symbol;
@@ -265,7 +266,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        */
         public void OnMessage(QuickFix.FIX44.NewOrderSingle n, SessionID s)
         {
             Symbol symbol = n.Symbol;
@@ -320,7 +321,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /*
         public void OnMessage(QuickFix.FIX50.NewOrderSingle n, SessionID s)
         {
             Symbol symbol = n.Symbol;
@@ -374,14 +375,14 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
-        public void OnMessage(QuickFix.FIX40.News n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX41.News n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX42.News n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX43.News n, SessionID s) { }
+        */
+//        public void OnMessage(QuickFix.FIX40.News n, SessionID s) { }
+//        public void OnMessage(QuickFix.FIX41.News n, SessionID s) { }
+//        public void OnMessage(QuickFix.FIX42.News n, SessionID s) { }
+//        public void OnMessage(QuickFix.FIX43.News n, SessionID s) { }
         public void OnMessage(QuickFix.FIX44.News n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX50.News n, SessionID s) { }
-
+//        public void OnMessage(QuickFix.FIX50.News n, SessionID s) { }
+        /*
         public void OnMessage(QuickFix.FIX40.OrderCancelRequest msg, SessionID s)
         {
             string orderid = (msg.IsSetOrderID()) ? msg.OrderID.Obj : "unknown orderID";
@@ -452,7 +453,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        */
         public void OnMessage(QuickFix.FIX44.OrderCancelRequest msg, SessionID s)
         {
             string orderid = (msg.IsSetOrderID()) ? msg.OrderID.Obj : "unknown orderID";
@@ -470,7 +471,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /*
         public void OnMessage(QuickFix.FIX50.OrderCancelRequest msg, SessionID s)
         {
             string orderid = (msg.IsSetOrderID()) ? msg.OrderID.Obj : "unknown orderID";
@@ -488,8 +489,6 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
-
 
         public void OnMessage(QuickFix.FIX40.OrderCancelReplaceRequest msg, SessionID s)
         {
@@ -561,7 +560,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        */
         public void OnMessage(QuickFix.FIX44.OrderCancelReplaceRequest msg, SessionID s)
         {
             string orderid = (msg.IsSetOrderID()) ? msg.OrderID.Obj : "unknown orderID";
@@ -579,7 +578,7 @@ namespace Executor
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /*
         public void OnMessage(QuickFix.FIX50.OrderCancelReplaceRequest msg, SessionID s)
         {
             string orderid = (msg.IsSetOrderID()) ? msg.OrderID.Obj : "unknown orderID";
@@ -598,15 +597,14 @@ namespace Executor
             }
         }
 
-
+        */
 
 
         // FIX40-41 don't have rejects
-        public void OnMessage(QuickFix.FIX42.BusinessMessageReject n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX43.BusinessMessageReject n, SessionID s) { }
+//        public void OnMessage(QuickFix.FIX42.BusinessMessageReject n, SessionID s) { }
+//        public void OnMessage(QuickFix.FIX43.BusinessMessageReject n, SessionID s) { }
         public void OnMessage(QuickFix.FIX44.BusinessMessageReject n, SessionID s) { }
-        public void OnMessage(QuickFix.FIX50.BusinessMessageReject n, SessionID s) { }
-
+//        public void OnMessage(QuickFix.FIX50.BusinessMessageReject n, SessionID s) { }
 
         #endregion //MessageCracker overloads
     }
