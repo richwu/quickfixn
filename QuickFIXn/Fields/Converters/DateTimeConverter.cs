@@ -16,7 +16,8 @@ namespace QuickFix.Fields.Converters
         public static string[] DATE_TIME_FORMATS = { "yyyyMMdd-HH:mm:ss.fff", "yyyyMMdd-HH:mm:ss" };
         public static string[] DATE_ONLY_FORMATS = { "yyyyMMdd" };
         public static string[] TIME_ONLY_FORMATS = { "HH:mm:ss.fff", "HH:mm:ss" };
-        public static DateTimeStyles DATE_TIME_STYLES = DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal;
+//        public static DateTimeStyles DATE_TIME_STYLES = DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal;
+        public static DateTimeStyles DATE_TIME_STYLES = DateTimeStyles.AssumeLocal;
         public static CultureInfo DATE_TIME_CULTURE_INFO = CultureInfo.InvariantCulture;
 
         /// <summary>

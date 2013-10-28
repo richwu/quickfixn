@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.Design;
+
 namespace QuickFix
 {
     /// <summary>
@@ -93,7 +95,9 @@ namespace QuickFix
 
             lock (sync_)
             {
-                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : " + msg);
+//                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : " + msg);
+//                Changed by RW
+                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.Now) + " : " + msg);
             }
         }
 
@@ -103,7 +107,9 @@ namespace QuickFix
 
             lock (sync_)
             {
-                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : " + msg);
+//                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : " + msg);
+                //                Changed by RW
+                messageLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.Now) + " : " + msg);
             }
         }
 
@@ -113,7 +119,9 @@ namespace QuickFix
 
             lock (sync_)
             {
-                eventLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : "+ s);
+//                eventLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.UtcNow) + " : " + s);
+                //                Changed by RW
+                eventLog_.WriteLine(Fields.Converters.DateTimeConverter.Convert(System.DateTime.Now) + " : " + s);
             }
         }
 

@@ -31,15 +31,24 @@ namespace Executor
             Console.WriteLine("OUT: " + message);
         }
 
-        public void FromAdmin(Message message, SessionID sessionID) { }
+        public void FromAdmin(Message message, SessionID sessionID)
+        {
+            Console.WriteLine("IN:  " + message);
+            //Crack(message, sessionID);
+        }
         public void OnCreate(SessionID sessionID) { }
         public void OnLogout(SessionID sessionID) { }
-        public void OnLogon(SessionID sessionID) { }
+
+        public void OnLogon(SessionID sessionID)
+        {
+            
+        }
         public void ToAdmin(Message message, SessionID sessionID) { }
+
         #endregion
 
         #region MessageCracker overloads
-        public void OnMessage(QuickFix.FIX40.NewOrderSingle n, SessionID s)
+        public void OnMessage(QuickFix.FIX44.NewOrderSingle n, SessionID s)
         {
             Symbol symbol = n.Symbol;
             Side side = n.Side;

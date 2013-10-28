@@ -1081,8 +1081,9 @@ namespace QuickFix
             }
 
             // Ensure sendingTime is later than OrigSendingTime, else reject and logout
-            DateTime origSendingTime = msg.Header.GetDateTime(Fields.Tags.OrigSendingTime);
-            DateTime sendingTime = msg.Header.GetDateTime(Fields.Tags.SendingTime);
+            DateTime origSendingTime = msg.Header.GetDateTime(Fields.Tags.OrigSendingTime).ToUniversalTime();
+            DateTime sendingTime = msg.Header.GetDateTime(Fields.Tags.SendingTime).ToUniversalTime();
+            
             System.TimeSpan tmSpan = origSendingTime - sendingTime;
 
             if (tmSpan.TotalSeconds > 0)
@@ -1188,7 +1189,7 @@ namespace QuickFix
                 logon.SetField(new Fields.ResetSeqNumFlag(true));
 
             InitializeHeader(logon);
-            state_.LastReceivedTimeDT = DateTime.UtcNow;
+            state_.LastReceivedTimeDT = DateTime.UtcNow.ToLocalTime();
             state_.TestRequestCounter = 0;
             state_.SentLogon = true;
             return SendRaw(logon, 0);
@@ -1404,7 +1405,9 @@ namespace QuickFix
         /// <param name="m"></param>
         protected void InitializeHeader(Message m, int msgSeqNum)
         {
-            state_.LastSentTimeDT = DateTime.UtcNow;
+            //                Changed by RW
+            state_.LastSentTimeDT = DateTime.UtcNow.ToLocalTime();
+
             m.Header.SetField(new Fields.BeginString(this.SessionID.BeginString));
             m.Header.SetField(new Fields.SenderCompID(this.SessionID.SenderCompID));
             if (SessionID.IsSet(this.SessionID.SenderSubID))
@@ -1442,7 +1445,7 @@ namespace QuickFix
             else
                 showMilliseconds = this.SessionID.BeginString.CompareTo(FixValues.BeginString.FIX42) >= 0;
 
-            header.SetField(new Fields.SendingTime(System.DateTime.UtcNow, showMilliseconds && MillisecondsInTimeStamp));
+            header.SetField(new Fields.SendingTime(System.DateTime.UtcNow.ToLocalTime(), showMilliseconds && MillisecondsInTimeStamp));
         }
 
         protected void Persist(Message message, string messageString)
@@ -1458,7 +1461,9 @@ namespace QuickFix
         protected bool IsGoodTime(Message msg)
         {
             var sendingTime = msg.Header.GetDateTime(Fields.Tags.SendingTime);
-            System.TimeSpan tmSpan = System.DateTime.UtcNow - sendingTime;
+
+            //                Changed by RW
+            System.TimeSpan tmSpan = System.DateTime.UtcNow - sendingTime.ToUniversalTime();
             if (System.Math.Abs(tmSpan.TotalSeconds) > MaxLatency)
             {
                 return false;
